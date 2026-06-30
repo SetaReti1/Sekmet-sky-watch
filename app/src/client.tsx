@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useMemo } from '@fuser/vendor/react';
-import { createRoot } from '@fuser/vendor/react-dom/client';
-import { Play, Pause, RefreshCw, RotateCcw } from '@fuser/vendor/lucide-react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Play, Pause, RefreshCw, RotateCcw } from 'lucide-react';
 
 // ==========================================
 // VECTOR GRAPHICS HELPERS
@@ -2867,7 +2867,7 @@ function HelioCanvas({
 
 
 
-}: {selectedAsteroid: Asteroid;asteroids?: Asteroid[];missionTime: number;onSelectAsteroid?: (id: number, name: string) => void;selectedObjectType?: 'asteroid' | 'solar_system';selectedSolarObjectId?: string;onSelectSolarObject?: (id: string, name: string) => void;}) {
+}: {selectedAsteroid: Asteroid;asteroids?: Asteroid[];missionTime: number;onSelectAsteroid?: (id: number, name: string) => void;selectedObjectType?: 'asteroid' | 'solar_system' | 'satellite';selectedSolarObjectId?: string;onSelectSolarObject?: (id: string, name: string) => void;}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [rotationX, setRotationX] = useState<number>(0.5);
   const [rotationZ, setRotationZ] = useState<number>(0.2);
@@ -3228,13 +3228,9 @@ function HelioCanvas({
     }
 
     if (closestSolar) {
-      if (onSelectSolarObject) {
-        onSelectSolarObject(closestSolar.id, closestSolar.name);
-      }
+      onSelectSolarObject?.(closestSolar.id, closestSolar.name);
     } else if (closestAst) {
-      if (onSelectAsteroid) {
-        onSelectAsteroid(closestAst.id, closestAst.des);
-      }
+      onSelectAsteroid?.(closestAst.id, closestAst.des);
     }
   };
 
