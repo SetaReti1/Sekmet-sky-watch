@@ -1,0 +1,6 @@
+{
+  "name": "near-earth-object-encounters",
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {}
+}
